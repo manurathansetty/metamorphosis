@@ -149,11 +149,11 @@ export function globe(count: number): Float32Array {
   return out;
 }
 
-/* ── 3 · SATELLITES — five project orbs in a wide arc ───────────── */
+/* ── 3 · SATELLITES — four project orbs in a wide arc ───────────── */
 export function satellites(count: number): Float32Array {
   const out = new Float32Array(count * 4);
   const seed = { s: 777 };
-  const CLUSTERS = 5;
+  const CLUSTERS = 4;
   // arc across the upper half, mild depth variance
   const centers: Array<[number, number, number, number]> = [];
   for (let c = 0; c < CLUSTERS; c++) {
