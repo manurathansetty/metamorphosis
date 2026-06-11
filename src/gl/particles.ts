@@ -154,12 +154,12 @@ void main(){
 
   // click shockwave — slow expanding ripple band
   float age = uTime - uBurstTime;
-  if (age < 2.2 && age > 0.0) {
+  if (age < 1.9 && age > 0.0) {
     vec3 db = pos - uBurst;
     float d = length(db);
-    float wave = age * 1.7;
+    float wave = age * 2.0;
     float band = exp(-pow((d - wave) * 4.0, 2.0));
-    pos += normalize(db + 1e-4) * band * 0.45 * (1.0 - age / 2.2);
+    pos += normalize(db + 1e-4) * band * 0.45 * (1.0 - age / 1.9);
   }
 
   vec4 mv = modelViewMatrix * vec4(pos, 1.0);
