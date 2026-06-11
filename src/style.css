@@ -246,10 +246,16 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
 }
 
 /* ─── contact ───────────────────────────────────────────────────── */
-.section--contact { flex-direction: column; justify-content: center; gap: 10vh; }
+/* exactly one viewport tall — the page ends on this composition */
+.section--contact {
+  flex-direction: column; justify-content: center;
+  position: relative;
+  min-height: 100vh; max-height: max(100vh, 760px);
+  padding-top: 90px; padding-bottom: 90px;
+}
 /* contact flow: heading → particle name (canvas) → lede caption → links */
 .section--contact .lede {
-  margin: clamp(130px, 24vh, 240px) auto 6px; /* the particle MANU lives in this gap */
+  margin: clamp(170px, 30vh, 300px) auto 6px; /* the particle MANU lives in this gap */
   font-size: 15px; color: var(--ink-faint);
 }
 .contact__actions {
@@ -275,7 +281,10 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
 }
 .btn--primary:hover { box-shadow: 0 0 54px rgba(192, 132, 252, 0.55); }
 
-.footer { text-align: center; color: var(--ink-faint); }
+.footer {
+  text-align: center; color: var(--ink-faint);
+  position: absolute; left: 0; right: 0; bottom: 22px;
+}
 .footer .mono { font-size: 12px; text-shadow: 0 1px 3px rgba(4, 3, 8, 0.95), 0 3px 14px rgba(4, 3, 8, 0.95); }
 
 /* ─── reveal animations ─────────────────────────────────────────── */
