@@ -196,7 +196,7 @@ void main(){
   float twinkle = 0.8 + 0.2 * sin(uTime * (0.8 + aRand.w * 1.1) + aRand.x * 40.0);
   float size = (0.9 + aRand.w * 1.4) * 2.2 * twinkle * (0.8 + bright * 0.25);
   gl_PointSize = size * uPixelRatio * (3.4 / max(0.4, -mv.z));
-  vAlpha = (0.5 + 0.5 * twinkle) * min(1.0, bright) * 0.5;
+  vAlpha = (0.5 + 0.5 * twinkle) * min(1.0, bright) * 0.43;
 }
 `;
 
