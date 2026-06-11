@@ -7,7 +7,7 @@
 My portfolio — a single GPU particle system that morphs through a brain, a neuron tree,
 a globe, project satellites, and finally my name, driven entirely by scroll.
 
-[**Live site**](https://manu-rathan-setty-portfolio.vercel.app) · [Manu Rathan Setty](https://www.linkedin.com/in/manu-rathan-setty-s-5857a8249) — Full-Stack & AI Engineer, Bengaluru
+[**Live site**](https://manusetty-portfolio.vercel.app) · [Manu Rathan Setty](https://www.linkedin.com/in/manu-rathan-setty-s-5857a8249) — Full-Stack & AI Engineer, Bengaluru
 
 ![Three.js](https://img.shields.io/badge/Three.js-r170-049EF4?logo=threedotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
