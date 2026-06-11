@@ -14,7 +14,7 @@ export class ScrollDirector {
   timeline = 0;
 
   constructor() {
-    this.lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    this.lenis = new Lenis({ lerp: 0.075, smoothWheel: true });
     this.sections = Array.from(document.querySelectorAll<HTMLElement>("[data-shape]"));
     this.measure();
     window.addEventListener("resize", () => this.measure());

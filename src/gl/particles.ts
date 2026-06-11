@@ -122,25 +122,25 @@ void main(){
   // transit turbulence — the starling-flock moment
   float transit = pr * (1.0 - pr) * 4.0;
   if (transit > 0.001) {
-    pos += curl(pos * 0.85 + uTime * 0.18 + aRand.y * 3.0) * transit * (0.45 + aRand.z * 0.3);
+    pos += curl(pos * 0.85 + uTime * 0.11 + aRand.y * 3.0) * transit * (0.4 + aRand.z * 0.25);
   }
 
   // idle life: slow drift + breathing
-  pos += curl(pos * 0.5 + uTime * 0.04) * 0.035;
-  pos += pos * sin(uTime * 0.9 + aRand.y * 6.2831) * 0.008;
+  pos += curl(pos * 0.5 + uTime * 0.022) * 0.028;
+  pos += pos * sin(uTime * 0.5 + aRand.y * 6.2831) * 0.006;
 
   // satellites: active cluster leans toward camera, orbits slowly spin
   float wSat = shapeWeight(3.0, pr);
   if (wSat > 0.01) {
     float cl = mix(A.w, B.w, step(0.5, pr)); // keep id crisp
-    float spin = uTime * (0.12 + cl * 0.025);
+    float spin = uTime * (0.07 + cl * 0.015);
     float cs = cos(spin), sn = sin(spin);
     // gentle whole-arc sway
     pos.x += sin(uTime * 0.3 + cl * 1.3) * 0.02 * wSat;
     pos.y += cs * 0.015 * wSat;
     if (abs(cl - uActiveCluster) < 0.5) {
       pos.z += 0.55 * wSat;
-      pos *= 1.0 + 0.06 * wSat * sin(uTime * 2.0 + sn);
+      pos *= 1.0 + 0.05 * wSat * sin(uTime * 1.2 + sn);
     }
   }
 
@@ -170,7 +170,7 @@ void main(){
   float wGlobe = shapeWeight(2.0, pr);
   if (wGlobe > 0.01) {
     float gw = meta;
-    float beacon = step(2.0, gw) * (0.8 + 0.6 * sin(uTime * 3.0)); // Bengaluru pulses
+    float beacon = step(2.0, gw) * (0.8 + 0.6 * sin(uTime * 1.8)); // Bengaluru pulses
     bright = mix(bright, 0.25 + gw * 0.85 + beacon, wGlobe);
   }
   float wBrain = shapeWeight(0.0, pr);
@@ -178,8 +178,8 @@ void main(){
   float wNeuron = shapeWeight(1.0, pr);
   if (wNeuron > 0.01) {
     // signals climbing the dendrites
-    float pulse = smoothstep(0.92, 1.0, sin(meta * 6.0 - uTime * 2.2) * 0.5 + 0.5);
-    bright = mix(bright, 0.6 + meta * 0.5 + pulse * 1.4, wNeuron);
+    float pulse = smoothstep(0.92, 1.0, sin(meta * 6.0 - uTime * 1.3) * 0.5 + 0.5);
+    bright = mix(bright, 0.55 + meta * 0.45 + pulse * 1.0, wNeuron);
   }
   if (wSat > 0.01) {
     float cl = mix(A.w, B.w, step(0.5, pr));
@@ -193,10 +193,10 @@ void main(){
   base = mix(base, CYAN, transit * 0.35);                 // morphs flash cyan
   vColor = base * bright;
 
-  float twinkle = 0.78 + 0.22 * sin(uTime * (1.5 + aRand.w * 2.0) + aRand.x * 40.0);
+  float twinkle = 0.8 + 0.2 * sin(uTime * (0.8 + aRand.w * 1.1) + aRand.x * 40.0);
   float size = (0.9 + aRand.w * 1.4) * 2.2 * twinkle * (0.8 + bright * 0.25);
   gl_PointSize = size * uPixelRatio * (3.4 / max(0.4, -mv.z));
-  vAlpha = (0.5 + 0.5 * twinkle) * min(1.0, bright) * 0.62;
+  vAlpha = (0.5 + 0.5 * twinkle) * min(1.0, bright) * 0.5;
 }
 `;
 

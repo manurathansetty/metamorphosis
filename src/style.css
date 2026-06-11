@@ -130,6 +130,7 @@ h2 {
   font-size: clamp(34px, 5.2vw, 64px);
   font-weight: 600; line-height: 1.06;
   margin: 18px 0 26px;
+  filter: drop-shadow(0 2px 5px rgba(4, 3, 8, 0.85)) drop-shadow(0 6px 26px rgba(4, 3, 8, 0.9));
 }
 h2 em {
   font-style: normal;
@@ -143,6 +144,7 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
 .eyebrow {
   font-family: var(--font-mono); font-size: 13px;
   color: var(--cyan); letter-spacing: 0.08em;
+  text-shadow: 0 1px 3px rgba(4, 3, 8, 0.9), 0 3px 18px rgba(4, 3, 8, 0.9);
 }
 .eyebrow__num { color: var(--ink-faint); margin-right: 6px; }
 
@@ -150,6 +152,7 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
   font-size: clamp(16px, 1.6vw, 19px);
   color: var(--ink-dim); max-width: 640px;
   margin-bottom: 48px;
+  text-shadow: 0 1px 3px rgba(4, 3, 8, 0.9), 0 4px 22px rgba(4, 3, 8, 0.95);
 }
 .lede strong { color: var(--ink); font-weight: 600; }
 .accent { color: var(--violet); }
@@ -159,17 +162,19 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
   font-size: clamp(54px, 10vw, 128px);
   font-weight: 700; line-height: 0.95;
   margin: 22px 0 18px;
-  text-shadow: 0 0 60px rgba(129, 140, 248, 0.35);
+  text-shadow: 0 2px 6px rgba(4, 3, 8, 0.8), 0 0 60px rgba(129, 140, 248, 0.35);
 }
 .hero__role {
   font-family: var(--font-display);
   font-size: clamp(20px, 2.6vw, 32px);
   font-weight: 500; color: var(--ink);
+  text-shadow: 0 1px 4px rgba(4, 3, 8, 0.85), 0 4px 24px rgba(4, 3, 8, 0.9);
 }
 .hero__role .amp { color: var(--violet); font-style: italic; }
 .hero__sub {
   margin-top: 16px; max-width: 560px;
   color: var(--ink-dim); font-size: clamp(15px, 1.5vw, 18px);
+  text-shadow: 0 1px 3px rgba(4, 3, 8, 0.9), 0 4px 22px rgba(4, 3, 8, 0.95);
 }
 .hero__hint {
   display: flex; align-items: center; gap: 14px;

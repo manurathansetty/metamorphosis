@@ -39,9 +39,9 @@ export class Stage {
     this.composer.addPass(new RenderPass(this.scene, this.camera));
     const bloom = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      0.5,  // strength — glow, not floodlight
+      0.42, // strength — glow, not floodlight
       0.5,  // radius
-      0.12, // threshold
+      0.16, // threshold
     );
     this.composer.addPass(bloom);
 
