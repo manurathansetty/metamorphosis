@@ -228,6 +228,14 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+.card__links { margin-top: 16px; font-size: 12px; }
+.card__links a {
+  color: var(--cyan); text-decoration: none;
+  padding: 6px 0; letter-spacing: 0.04em;
+}
+.card__links a:hover { text-shadow: 0 0 14px rgba(103, 232, 249, 0.7); }
+.card__links-note { color: var(--ink-faint); letter-spacing: 0.04em; }
+
 /* experience */
 .card--xp { margin-bottom: 18px; }
 .card__head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
