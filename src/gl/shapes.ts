@@ -202,6 +202,7 @@ export function nameShape(count: number): Float32Array {
 
   const aspect = cw / ch;
   const W = 2.9, H = W / aspect;
+  const DROP = 0.15; // near-centre (user preference), just shy of the lede line
   let placed = 0, guard = 0;
   while (placed < count && guard < count * 400) {
     guard++;
@@ -210,9 +211,9 @@ export function nameShape(count: number): Float32Array {
     if (px[(iy * cw + ix) * 4 + 3] > 128) {
       const o = placed * 4;
       out[o] = (u - 0.5) * W;
-      out[o + 1] = (0.5 - v) * H;
+      out[o + 1] = (0.5 - v) * H - DROP;
       out[o + 2] = (rand(seed) - 0.5) * 0.14;
-      out[o + 3] = 1.1;
+      out[o + 3] = 1.0;
       placed++;
     }
   }

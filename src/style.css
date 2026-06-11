@@ -247,6 +247,7 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
 
 /* ─── contact ───────────────────────────────────────────────────── */
 .section--contact { flex-direction: column; justify-content: center; gap: 10vh; }
+.section--contact .container--center { transform: translateY(-7vh); }
 .contact__actions {
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
   margin-top: 14px;
@@ -271,7 +272,7 @@ h3 { font-size: 22px; font-weight: 600; margin: 6px 0 10px; }
 .btn--primary:hover { box-shadow: 0 0 54px rgba(192, 132, 252, 0.55); }
 
 .footer { text-align: center; color: var(--ink-faint); }
-.footer .mono { font-size: 12px; }
+.footer .mono { font-size: 12px; text-shadow: 0 1px 3px rgba(4, 3, 8, 0.95), 0 3px 14px rgba(4, 3, 8, 0.95); }
 
 /* ─── reveal animations ─────────────────────────────────────────── */
 .reveal {

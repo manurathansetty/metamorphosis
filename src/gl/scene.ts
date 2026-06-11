@@ -52,7 +52,10 @@ export class Stage {
       this.ndc.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
       this.parallax.set(this.ndc.x, this.ndc.y);
       this.raycaster.setFromCamera(this.ndc, this.camera);
-      if (this.raycaster.ray.intersectPlane(this.plane, this.hit)) this.swarm.setMouse(this.hit);
+      if (this.raycaster.ray.intersectPlane(this.plane, this.hit)) {
+        // shader works in the swarm's local space — undo the points offset
+        this.swarm.setMouse(this.hit.sub(this.swarm.points.position));
+      }
       const glow = document.querySelector<HTMLElement>(".cursor-glow");
       if (glow) { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; }
     });
@@ -61,7 +64,7 @@ export class Stage {
       this.ndc.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
       this.raycaster.setFromCamera(this.ndc, this.camera);
       if (this.raycaster.ray.intersectPlane(this.plane, this.hit)) {
-        this.swarm.burst(this.hit, this.clock.getElapsedTime());
+        this.swarm.burst(this.hit.sub(this.swarm.points.position), this.clock.getElapsedTime());
       }
     });
   }
