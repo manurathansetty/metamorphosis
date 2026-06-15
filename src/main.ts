@@ -33,16 +33,16 @@ async function boot(): Promise<void> {
 
   const stage = new Stage(canvas, count);
   const director = new ScrollDirector();
-  const heroInner = document.querySelector<HTMLElement>(".hero__inner");
+  const heroFoot = document.querySelector<HTMLElement>(".hero__foot");
 
   const loop = (time: number): void => {
     const morph = director.update(time);
     stage.setZoomForTimeline(director.timeline);
     stage.render(morph);
-    // the whole hero composition disperses up into the swarm as you scroll in
-    if (heroInner) {
-      const exit = Math.min(1, window.scrollY / (window.innerHeight * 0.85));
-      heroInner.style.setProperty("--exit", exit.toFixed(4));
+    // footer opacity tied directly to scroll position (no CSS transition) so it
+    // scrubs with the scroll rather than animating on its own afterwards
+    if (heroFoot) {
+      heroFoot.style.opacity = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.2)).toFixed(3);
     }
     requestAnimationFrame(loop);
   };
