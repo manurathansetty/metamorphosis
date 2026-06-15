@@ -355,6 +355,7 @@ h3 { font-size: 22px; font-weight: 600; }
 .btn--primary {
   color: #1a0d06; font-weight: 600;
   background: var(--ember); border-color: var(--ember);
+  text-shadow: none; /* solid bg needs no legibility halo — was muddying the text */
 }
 .btn--primary:hover { background: #ff7044; color: #1a0d06; }
 
