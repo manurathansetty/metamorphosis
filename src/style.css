@@ -29,7 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   /* soft warm-dark halo keeps text legible over bright particles (inherited) */
-  text-shadow: 0 1px 2px rgba(12, 10, 9, 0.9), 0 2px 18px rgba(12, 10, 9, 0.8);
+  text-shadow: 0 0 4px rgba(12, 10, 9, 0.78), 0 1px 3px rgba(12, 10, 9, 0.95), 0 2px 20px rgba(12, 10, 9, 0.82);
 }
 
 ::selection { background: rgba(255, 93, 46, 0.35); color: #fff; }
@@ -123,6 +123,13 @@ main { position: relative; z-index: 2; }
   min-height: 100vh;
   padding: clamp(120px, 17vh, 190px) clamp(20px, 5vw, 72px);
   display: flex; align-items: center;
+}
+
+/* soft feathered scrim lifts text contrast over the brightest shapes
+   (neuron burst, globe) without reading as a panel */
+#about::before, #experience::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 82% 64% at 46% 52%, rgba(12, 10, 9, 0.42), transparent 78%);
 }
 
 /* asymmetric editorial grid: numbered rail + content */
@@ -273,7 +280,7 @@ h3 { font-size: 22px; font-weight: 600; }
 }
 .projects li:last-child { border-bottom: 1px solid var(--rule); }
 .project::before {
-  content: ""; position: absolute; left: 0; top: -1px; bottom: 0;
+  content: ""; position: absolute; left: -18px; top: -1px; bottom: 0;
   width: 2px; background: var(--ember);
   transform: scaleY(0); transform-origin: top;
   transition: transform 0.45s var(--ease);

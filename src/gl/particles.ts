@@ -179,7 +179,7 @@ void main(){
   if (wNeuron > 0.01) {
     // signals climbing the dendrites
     float pulse = smoothstep(0.92, 1.0, sin(meta * 6.0 - uTime * 1.3) * 0.5 + 0.5);
-    bright = mix(bright, 0.55 + meta * 0.45 + pulse * 1.0, wNeuron);
+    bright = mix(bright, 0.42 + meta * 0.38 + pulse * 0.5, wNeuron);
   }
   if (wSat > 0.01) {
     float cl = mix(A.w, B.w, step(0.5, pr));
