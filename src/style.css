@@ -195,8 +195,12 @@ h3 { font-size: 22px; font-weight: 600; }
 .accent { color: var(--ember); font-style: normal; }
 
 /* ─── hero ──────────────────────────────────────────────────────── */
-.hero { padding-top: clamp(120px, 20vh, 200px); }
-.hero__inner { width: 100%; max-width: 1200px; margin: 0 auto; }
+/* content sits toward the top; the scroll hint is pinned to the bottom */
+.hero { align-items: stretch; padding-top: clamp(104px, 14vh, 158px); }
+.hero__inner {
+  display: flex; flex-direction: column;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+}
 .hero__meta {
   display: flex; align-items: center; gap: 16px;
   font-size: 13px; letter-spacing: 0.04em; color: var(--ink-dim);
@@ -224,12 +228,15 @@ h3 { font-size: 22px; font-weight: 600; }
 .hero__foot {
   display: flex; gap: 28px; flex-wrap: wrap;
   align-items: center; justify-content: space-between;
-  margin-top: clamp(48px, 9vh, 96px);
+  margin-top: auto; /* pin to the bottom of the hero */
   padding-top: 18px; border-top: 1px solid var(--rule);
   color: var(--ink-faint);
 }
 .hero__hint, .hero__sig { font-size: 12px; letter-spacing: 0.04em; }
 .hero__sig { color: var(--ink-faint); }
+/* the hint has done its job once you scroll — fade it out */
+.hero__hint { transition: opacity 0.45s var(--ease); }
+body.scrolled .hero__hint { opacity: 0; }
 
 /* ─── skills · definition list ──────────────────────────────────── */
 .speclist { margin-top: 8px; max-width: 640px; }

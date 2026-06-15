@@ -12,6 +12,12 @@ function webglOK(): boolean {
 }
 
 async function boot(): Promise<void> {
+  // fade the "scroll to morph" hint the moment the user starts scrolling (works
+  // in both the WebGL and static paths)
+  const onScroll = (): void => { document.body.classList.toggle("scrolled", window.scrollY > 24); };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
   if (reducedMotion || !webglOK()) {
     document.body.classList.add("static");
     document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
