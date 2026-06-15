@@ -2,8 +2,8 @@
 :root {
   --bg: #0c0a09;
   --ink: #ede6da;
-  --ink-dim: rgba(237, 230, 218, 0.62);
-  --ink-faint: rgba(237, 230, 218, 0.34);
+  --ink-dim: rgba(240, 234, 224, 0.78);
+  --ink-faint: rgba(240, 234, 224, 0.5);
   --ember: #ff5d2e;
   --rust: #c2410c;
   --amber: #f59e42;
@@ -195,11 +195,19 @@ h3 { font-size: 22px; font-weight: 600; }
 .accent { color: var(--ember); font-style: normal; }
 
 /* ─── hero ──────────────────────────────────────────────────────── */
-/* content sits toward the top; the scroll hint is pinned to the bottom */
-.hero { align-items: stretch; padding-top: clamp(104px, 14vh, 158px); }
+/* exactly one viewport: copy up top, the hint/signature/rule a true footer
+   at the bottom. the whole block lifts, blurs and fades into the swarm as you
+   scroll in — driven by --exit (set per-frame in JS). */
+.hero { align-items: stretch; padding-top: clamp(104px, 14vh, 158px); padding-bottom: clamp(22px, 4vh, 40px); }
 .hero__inner {
+  --exit: 0;
   display: flex; flex-direction: column;
   width: 100%; max-width: 1200px; margin: 0 auto;
+  opacity: calc(1 - var(--exit));
+  transform: translateY(calc(var(--exit) * -7vh)) scale(calc(1 - var(--exit) * 0.06));
+  transform-origin: left center;
+  filter: blur(calc(var(--exit) * 6px));
+  will-change: opacity, transform, filter;
 }
 .hero__meta {
   display: flex; align-items: center; gap: 16px;
@@ -234,9 +242,6 @@ h3 { font-size: 22px; font-weight: 600; }
 }
 .hero__hint, .hero__sig { font-size: 12px; letter-spacing: 0.04em; }
 .hero__sig { color: var(--ink-faint); }
-/* the hint has done its job once you scroll — fade it out */
-.hero__hint { transition: opacity 0.45s var(--ease); }
-body.scrolled .hero__hint { opacity: 0; }
 
 /* ─── skills · definition list ──────────────────────────────────── */
 .speclist { margin-top: 8px; max-width: 640px; }
@@ -400,12 +405,14 @@ body.static {
 }
 body.static .reveal { opacity: 1; transform: none; filter: none; transition: none; }
 body.static .reveal--mask .ln > span { transform: none; }
+body.static .hero__inner { opacity: 1; transform: none; filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; filter: none; }
   .reveal--mask .ln > span { transform: none; }
+  .hero__inner { opacity: 1; transform: none; filter: none; }
 }
 
 /* ─── responsive ────────────────────────────────────────────────── */

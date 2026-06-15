@@ -12,12 +12,6 @@ function webglOK(): boolean {
 }
 
 async function boot(): Promise<void> {
-  // fade the "scroll to morph" hint the moment the user starts scrolling (works
-  // in both the WebGL and static paths)
-  const onScroll = (): void => { document.body.classList.toggle("scrolled", window.scrollY > 24); };
-  addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
   if (reducedMotion || !webglOK()) {
     document.body.classList.add("static");
     document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
@@ -39,11 +33,17 @@ async function boot(): Promise<void> {
 
   const stage = new Stage(canvas, count);
   const director = new ScrollDirector();
+  const heroInner = document.querySelector<HTMLElement>(".hero__inner");
 
   const loop = (time: number): void => {
     const morph = director.update(time);
     stage.setZoomForTimeline(director.timeline);
     stage.render(morph);
+    // the whole hero composition disperses up into the swarm as you scroll in
+    if (heroInner) {
+      const exit = Math.min(1, window.scrollY / (window.innerHeight * 0.85));
+      heroInner.style.setProperty("--exit", exit.toFixed(4));
+    }
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
