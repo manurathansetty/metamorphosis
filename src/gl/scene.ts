@@ -26,8 +26,8 @@ export class Stage {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x040308);
-    this.scene.fog = new THREE.FogExp2(0x040308, 0.07);
+    this.scene.background = new THREE.Color(0x0c0a09);
+    this.scene.fog = new THREE.FogExp2(0x0c0a09, 0.07);
 
     this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 30);
     this.camera.position.set(0, 0, 3.3);

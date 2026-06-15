@@ -103,10 +103,10 @@ float shapeWeight(float s, float pr){
   return (abs(uShapeA - s) < 0.5 ? (1.0 - pr) : 0.0) + (abs(uShapeB - s) < 0.5 ? pr : 0.0);
 }
 
-const vec3 INDIGO = vec3(0.506, 0.553, 0.973);
-const vec3 VIOLET = vec3(0.753, 0.518, 0.988);
-const vec3 CYAN   = vec3(0.404, 0.910, 0.976);
-const vec3 WHITE  = vec3(1.0, 0.98, 1.0);
+const vec3 EMBER = vec3(1.000, 0.365, 0.180);
+const vec3 AMBER = vec3(0.961, 0.620, 0.259);
+const vec3 RUST  = vec3(0.761, 0.255, 0.047);
+const vec3 WHITE = vec3(1.0, 0.96, 0.90);
 
 void main(){
   vec4 A = pick(uShapeA);
@@ -187,10 +187,10 @@ void main(){
     bright = mix(bright, on, wSat);
   }
 
-  vec3 base = mix(INDIGO, VIOLET, aRand.y);
-  base = mix(base, CYAN, step(0.86, aRand.z) * 0.9);     // cyan sprinkles
+  vec3 base = mix(EMBER, AMBER, aRand.y);
+  base = mix(base, RUST, step(0.86, aRand.z) * 0.7);      // deep-rust embers
   base = mix(base, WHITE, step(0.985, aRand.w));          // rare white-hot stars
-  base = mix(base, CYAN, transit * 0.35);                 // morphs flash cyan
+  base = mix(base, AMBER, transit * 0.35);                // morphs flash warm amber
   vColor = base * bright;
 
   float twinkle = 0.8 + 0.2 * sin(uTime * (0.8 + aRand.w * 1.1) + aRand.x * 40.0);
