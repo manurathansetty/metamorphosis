@@ -39,9 +39,9 @@ export class Stage {
     this.composer.addPass(new RenderPass(this.scene, this.camera));
     const bloom = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      0.36, // strength — glow, not floodlight
+      0.3,  // strength: glow, not floodlight (kept low so highlights never blow out behind text)
       0.5,  // radius
-      0.18, // threshold
+      0.2,  // threshold
     );
     this.composer.addPass(bloom);
 
@@ -80,10 +80,11 @@ export class Stage {
   /** Camera + swarm placement per timeline position. */
   setZoomForTimeline(t: number): void {
     this.camTargetZ = 3.3 + 1.0 * Math.max(0, 1 - Math.abs(t - 3));
-    // keep the swarm clear of left-aligned copy early on, centre it for
-    // satellites and the name finale; on small screens stay centred but deep
+    // push the swarm well right of the left-hand copy through hero/about/
+    // experience so text never sits over bright particles; centre it for the
+    // satellites and the name finale. small screens stay centred (scrim handles it).
     const wide = window.innerWidth > 820;
-    const keys = wide ? [0.95, 0.6, 0.55, 0, 0] : [0, 0, 0, 0, 0];
+    const keys = wide ? [0.95, 1.2, 1.45, 0, 0] : [0, 0, 0, 0, 0];
     const i = Math.min(keys.length - 2, Math.floor(t));
     this.swarmTargetX = keys[i] + (keys[i + 1] - keys[i]) * (t - i);
   }

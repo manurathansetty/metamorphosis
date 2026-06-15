@@ -125,11 +125,11 @@ main { position: relative; z-index: 2; }
   display: flex; align-items: center;
 }
 
-/* soft feathered scrim lifts text contrast over the brightest shapes
-   (neuron burst, globe) without reading as a panel */
+/* desktop keeps text and swarm spatially apart (see setZoomForTimeline), so this
+   scrim is light insurance — it mostly matters on mobile, where the swarm centres */
 #about::before, #experience::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: radial-gradient(ellipse 82% 64% at 46% 52%, rgba(12, 10, 9, 0.42), transparent 78%);
+  background: radial-gradient(ellipse 78% 60% at 40% 52%, rgba(12, 10, 9, 0.32), transparent 76%);
 }
 
 /* asymmetric editorial grid: numbered rail + content */
@@ -232,7 +232,7 @@ h3 { font-size: 22px; font-weight: 600; }
 .hero__sig { color: var(--ink-faint); }
 
 /* ─── skills · definition list ──────────────────────────────────── */
-.speclist { margin-top: 8px; }
+.speclist { margin-top: 8px; max-width: 640px; }
 .speclist__row {
   display: grid;
   grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
@@ -252,7 +252,7 @@ h3 { font-size: 22px; font-weight: 600; }
 
 /* ─── experience · ledger ───────────────────────────────────────── */
 .doc__main--narrow { max-width: 760px; }
-.ledger { list-style: none; margin-top: 6px; }
+.ledger { list-style: none; margin-top: 6px; max-width: 560px; }
 .ledger__row {
   display: grid;
   grid-template-columns: minmax(0, 0.34fr) minmax(0, 1fr);
